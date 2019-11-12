@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{nome}}</title>
+</head>
+<body>
+    <a href="/cadastrar">Cadastrar Veiculo</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Categoria</th>
+                <th>Ano</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for c in lista %}
+            <tr>
+                <td>{{c[0]}}</td>
+                <td>{{c[1]}}</td>
+                <td>{{c[2]}}</td>
+                <td>{{c[3]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
