@@ -20,10 +20,10 @@
         <tbody>
             {%for c in lista %}
             <tr>
-                <td>{{c[0]}}</td>
-                <td>{{c[1]}}</td>
-                <td>{{c[2]}}</td>
-                <td>{{c[3]}}</td>
+                <td>{{ c.marca }}</td>
+                <td>{{ c.modelo }}</td>
+                <td>{{ c.categoria }}</td>
+                <td>{{ c.ano }}</td>
             </tr>
             {% endfor %}
         </tbody>

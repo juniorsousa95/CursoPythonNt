@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request #criação de rotas
+from flask import Flask, render_template, request, redirect #criação de rotas
 from carro import Carro
 
 nome_pagina = 'Veiculos' #nome da pagina do navegador
@@ -6,12 +6,8 @@ app = Flask (__name__) #
 
 @app.route('/') #rota de acesso a pagina web
 def inicio (): #metodo
-    lista_veiculos = [] #lista
-    with open ('Aula5/carros.txt' , 'r') as arquivo : #R de READ
-        for l in arquivo:
-            vetor = l.split (';')
-            lista_veiculos.append(vetor)
-    return render_template('index-carro.html', nome = nome_pagina, lista = lista_veiculos)
+    carro = Carro()
+    return render_template('index-carro.html', nome = nome_pagina, lista = carro.lista_todos() )
 
 @app.route('/cadastrar') # rota de acesso a pagina web de cadastro
 def cadastrar():
@@ -23,7 +19,8 @@ def salvar():
     modelo = request.args['modelo']
     categoria = request.args['categoria']
     ano = request.args['ano']
-    with open ('Aula5/carros.txt','a') as arq :
-        arq.write(f'{marca};{modelo};{categoria};{ano}\n')
-    return 'Veiculo Salvo'
+    carro = Carro(marca, modelo, categoria, ano)
+    carro.cadastrar()
+    return redirect('/')
+    
 app.run(debug=True)
